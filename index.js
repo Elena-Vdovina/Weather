@@ -1,7 +1,6 @@
 const cityEl = document.getElementById("city")
 const temperEl = document.getElementById("temperature");
 const windEl = document.getElementById("windspeed");
-const winddirEl = document.getElementById("winddirection");
 const weatherEl = document.getElementById("weather");
 
 async function getIP() {
@@ -16,10 +15,9 @@ async function gerWethear(latitude,longitude){
 const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&hourly=temperature_2m,relativehumidity_2m,windspeed_10m`);
 const obj = await response.json();
 const {current_weather} = obj;
-const {temperature, weathercode, windspeed, winddirection} = current_weather;
+const {temperature, weathercode, windspeed} = current_weather;
 temperEl.textContent = `Temperature: ${temperature} °C`;
 windEl.textContent = `Wind speed: ${windspeed} m/s`;
-winddirEl.textContent = `Wind direction: ${winddirection} °`;
 switch (weathercode){
     case 0: code="Clear sky"; break;
     case 1:code="Mainly clear"; break;
